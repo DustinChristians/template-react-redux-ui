@@ -17,6 +17,14 @@
 5. Ensure you do not have NODE_ENV=production in your env variables as it will not install the devDependencies. To check run this on the command line: `set NODE_ENV`. If it comes back as production, you need to clear this env variable.
 6. Nothing above work? Delete your node_modules folder and re-run npm install.
 
+### Prettier Setup
+
+The VS Code Prettier extension can be used to auto-format your code on save.
+
+1. Click on the extensions icon on the left side-bar and search for Prettier and click install.
+2. Then, in the VS Code main toolbar, click on Code -> Preferences -> Settings
+3. Within the settings search for FormatOnSave and make sure the setting is enabled.
+
 ### Production Dependencies
 
 | **Dependency**   | **Use**                                              |
