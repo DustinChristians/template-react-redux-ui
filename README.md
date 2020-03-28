@@ -2,18 +2,9 @@
 
 1. **Install/Update [Node](https://nodejs.org)**.
 2. **Open the project folder in VS Code and open a new terminal window.**
-3. **Install Node Packages.** - `npm install`
+3. **Install Node Packages.** - `npm ci`
 4. **Install [React developer tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and [Redux Dev Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)** in Chrome.
-5. Having issues? See below.
-
-### Having Issues? Try these things first:
-
-1. Run `npm install` - If you forget to do this, you'll get an error when you try to start the app later.
-2. Don't run the project from a symbolic link. It will cause issues with file watches.
-3. Delete any .eslintrc in your user directory and disable any ESLint plugin / custom rules within your editor since these will conflict with the ESLint rules defined in the app.
-4. On Windows? Open your console as an administrator. This will assure the console has the necessary rights to perform installs.
-5. Ensure you do not have NODE_ENV=production in your env variables as it will not install the devDependencies. To check run this on the command line: `set NODE_ENV`. If it comes back as production, you need to clear this env variable.
-6. Nothing above work? Delete your node_modules folder and re-run npm install.
+5. Having issues? See the **Troubleshooting** section below.
 
 ### Available Scripts
 
@@ -41,6 +32,15 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### Troubleshooting
+
+1. Run `npm install` - If you forget to do this, you'll get an error when you try to start the app later.
+2. Don't run the project from a symbolic link. It will cause issues with file watches.
+3. Delete any .eslintrc in your user directory and disable any ESLint plugin / custom rules within your editor since these will conflict with the ESLint rules defined in the app.
+4. On Windows? Open your console as an administrator. This will assure the console has the necessary rights to perform installs.
+5. Ensure you do not have NODE_ENV=production in your env variables as it will not install the devDependencies. To check run this on the command line: `set NODE_ENV`. If it comes back as production, you need to clear this env variable.
+6. Nothing above work? Delete your node_modules folder and re-run npm install.
 
 ### Prettier Setup
 
@@ -97,11 +97,40 @@ Other [React Starter Projects](https://www.javascriptstuff.com/react-starter-pro
 
     - ESLint will get installed as part of the “Create-React-App” dependencies.
     - You will need to install the ESLint extension in VS Code.
-    - To customize ESLint for your project create a .eslintrc config file in your project root.
 
     Configure ESLint for your project:
 
     - `npx eslint --init`
+	
+	You will be asked several questions for configuring ES Lint, answer them as follows:
+	1. How would you like to use ESLint? `To check syntax, find problems, and enforce code style`
+	2. What type of modules does your project use? `JavaScript modules (import/export)`
+	3. Which framework does your project use? `React`
+	4. Does your project use TypeScript? `No`
+	5. Where does your code run? `Browser`
+	6. How would you like to define a style for your project? `Use a popular style guide`
+	7. Which style guide do you want to follow? `Airbnb: https://github.com/airbnb/javascript`
+	8. What format do you want your config file to be in? `JSON`
+	
+	- You will be prompted to install the ESLint config for Airbnb. Type `yes` to install.
+
+	Open the .eslintrc file and set the rules object to:
+	
+		"rules": {
+		  "no-debugger": "off",
+		  "no-console": "warn",
+		  "no-unused-vars": "warn",
+		  "react/prop-types": "warn"
+		}
+	  
+	Next, in .eslintrc, add the settings object that specifies the version of React in use as required
+	by eslint-plugin-react as follows:
+	
+		"settings": {
+		  "react": {
+			"version": "detect"
+		  }
+		}
 
 5.  SASS
 
