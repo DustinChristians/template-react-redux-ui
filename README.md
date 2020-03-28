@@ -180,6 +180,18 @@ obj/
 Add the Stylelint extension for VSCode (adds realtime linter error reporting)
 Edit the Stylelint extension settings in VS Code and make sure the `Stylelint` setting is enabled.
 
+7. Editor Config
+
+Add a file in the root directory called .editorconfig and add the following settings:
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+end_of_line = crlf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
