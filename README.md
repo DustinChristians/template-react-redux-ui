@@ -93,7 +93,13 @@ Other [React Starter Projects](https://www.javascriptstuff.com/react-starter-pro
     - `npm start`
     - You should be able to browse to http://localhost:3000
 
-4.  ESLint
+4.  SASS
+
+    - `npm install node-sass --save`
+    - Rename the `App.css` file to `App.scss`.
+    - Import `App.scss` instead of the `.css` file in the `App.js` file
+
+5.  ESLint
 
     - ESLint will get installed as part of the “Create-React-App” dependencies.
     - You will need to install the ESLint extension in VS Code.
@@ -101,42 +107,78 @@ Other [React Starter Projects](https://www.javascriptstuff.com/react-starter-pro
     Configure ESLint for your project:
 
     - `npx eslint --init`
-	
-	You will be asked several questions for configuring ES Lint, answer them as follows:
-	1. How would you like to use ESLint? `To check syntax, find problems, and enforce code style`
-	2. What type of modules does your project use? `JavaScript modules (import/export)`
-	3. Which framework does your project use? `React`
-	4. Does your project use TypeScript? `No`
-	5. Where does your code run? `Browser`
-	6. How would you like to define a style for your project? `Use a popular style guide`
-	7. Which style guide do you want to follow? `Airbnb: https://github.com/airbnb/javascript`
-	8. What format do you want your config file to be in? `JSON`
-	
-	- You will be prompted to install the ESLint config for Airbnb. Type `yes` to install.
 
-	Open the .eslintrc file and set the rules object to:
-	
-		"rules": {
-		  "no-debugger": "off",
-		  "no-console": "warn",
-		  "no-unused-vars": "warn",
-		  "react/prop-types": "warn"
-		}
-	  
-	Next, in .eslintrc, add the settings object that specifies the version of React in use as required
-	by eslint-plugin-react as follows:
-	
-		"settings": {
-		  "react": {
-			"version": "detect"
-		  }
-		}
+    You will be asked several questions for configuring ES Lint, answer them as follows:
 
-5.  SASS
+    1.  How would you like to use ESLint? `To check syntax, find problems, and enforce code style`
+    2.  What type of modules does your project use? `JavaScript modules (import/export)`
+    3.  Which framework does your project use? `React`
+    4.  Does your project use TypeScript? `No`
+    5.  Where does your code run? `Browser`
+    6.  How would you like to define a style for your project? `Use a popular style guide`
+    7.  Which style guide do you want to follow? `Airbnb: https://github.com/airbnb/javascript`
+    8.  What format do you want your config file to be in? `JSON`
 
-    - `npm install node-sass --save`
-    - Rename the `App.css` file to `App.scss`.
-    - Import `App.scss` instead of the `.css` file in the `App.js` file
+    - You will be prompted to install the ESLint config for Airbnb. Type `yes` to install.
+
+    Open the .eslintrc file and set the rules object to:
+
+        "rules": {
+          "no-debugger": "off",
+          "no-console": "warn",
+          "no-unused-vars": "warn",
+          "react/prop-types": "warn"
+        }
+
+    Next, in .eslintrc, add the settings object that specifies the version of React in use as required
+    by eslint-plugin-react as follows:
+
+        "settings": {
+          "react": {
+        	"version": "detect"
+          }
+        }
+
+6.  StyleLint
+
+- `npm i -g stylelint-cli`
+
+Use --save-dev to install these as dev dependencies. We don't need them for production builds.
+
+- `npm i --save-dev stylelint`
+- `npm i --save-dev stylelint-config-recommended`
+- `npm i --save-dev stylelint-config-standard`
+- `npm i --save-dev stylelint-config-sass-guidelines`
+- `npm i --save-dev stylelint-order`
+
+Create the .stylelintrc.json configuration file in the project root.
+
+{
+  "extends": "stylelint-config-standard",
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "at-rule-no-unknown": null,
+    "function-name-case": null,
+    "color-hex-case": "upper",
+    "color-named": "always-where-possible",
+    "order/order": ["custom-properties", "declarations"],
+    "order/properties-alphabetical-order": [true, { "severity": "warning" }]
+  }
+}
+
+Create the .stylelintignore file in the root directory:
+
+./*
+
+!src/
+
+src/styles/plugins/**/*.scss
+src/styles/plugins/**/*.css
+**/*.min.css
+obj/
+
+Add the Stylelint extension for VSCode (adds realtime linter error reporting)
+Edit the Stylelint extension settings in VS Code and make sure the `Stylelint` setting is enabled.
 
 ## Learn More
 

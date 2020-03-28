@@ -1,0 +1,8 @@
+./*
+
+!src/
+
+src/styles/plugins/**/*.scss
+src/styles/plugins/**/*.css
+**/*.min.css
+obj/
