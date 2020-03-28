@@ -1,0 +1,6 @@
+package-lock.json
+node_modules/
+src/styles/plugins/**/*.scss
+src/styles/plugins/**/*.css
+**/*.min.css
+*.md
