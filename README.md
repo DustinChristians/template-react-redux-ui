@@ -103,6 +103,12 @@ Other [React Starter Projects](https://www.javascriptstuff.com/react-starter-pro
 
     - `npx eslint --init`
 
+5.  SASS
+
+    - `npm install node-sass --save`
+    - Rename the `App.css` file to `App.scss`.
+    - Import `App.scss` instead of the `.css` file in the `App.js` file
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
