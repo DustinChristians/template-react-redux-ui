@@ -43,7 +43,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 4. Ensure you do not have NODE_ENV=production in your env variables as it will not install the devDependencies. To check run this on the command line: `set NODE_ENV`. If it comes back as production, you need to clear this env variable.
 5. Nothing above work? Delete your node_modules folder and re-run npm install.
 
-### Prettier Setup
+### [Prettier](https://prettier.io/) Setup
 
 The VS Code Prettier extension can be used to auto-format your code on save.
 
@@ -51,7 +51,7 @@ The VS Code Prettier extension can be used to auto-format your code on save.
 2. Then, in the VS Code main toolbar, click on Code -> Preferences -> Settings
 3. Within the settings search for FormatOnSave and make sure the setting is enabled.
 
-### ES7 React/Redux/GraphQL/React-Native snippets extension
+### [ES7 React/Redux/GraphQL/React-Native snippets extension](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
 
 A VS Code extension that provides shortcuts for creating React/Redux snippets.
 
@@ -71,23 +71,23 @@ Other [React Starter Projects](https://www.javascriptstuff.com/react-starter-pro
 
 ### 2. Creating an application using the above tool-chain will scaffold a new project like so:
 
-your-app
-├── README.md
-├── node_modules
-├── package.json
-├── .gitignore
-├── public
-  │ ├── favicon.ico
-  │ ├── index.html
-  │ └── manifest.json
-└── src
-├── App.css
-├── App.js
-├── App.test.js
-├── index.css
-├── index.js
-├── logo.svg
-└── serviceWorker.js
+your-app<br />
+├── README.md<br />
+├── node_modules<br />
+├── package.json<br />
+├── .gitignore<br />
+├── public<br />
+  │ ├── favicon.ico<br />
+  │ ├── index.html<br />
+  │ └── manifest.json<br />
+└── src<br />
+├── App.css<br />
+├── App.js<br />
+├── App.test.js<br />
+├── index.css<br />
+├── index.js<br />
+├── logo.svg<br />
+└── serviceWorker.js<br />
 
 ### 3. To run the app, use the following command in a terminal window
 
@@ -157,32 +157,31 @@ Edit the Stylelint extension settings in VS Code and make sure the `Stylelint` s
 
   You can add an EditorConfig file to your project or codebase to enforce consistent coding styles for everyone that works in the codebase. EditorConfig settings take precedence over global Visual Studio text editor settings. This means that you can tailor each codebase to use text editor settings that are specific to that project.
 
-8. Workspace File
+### 8. Workspace File
 
-### What is a workspace?
+#### What is a workspace?
 
-A project that consists of one or more root folders, along with all of the Visual Studio Code configurations that belong to that project. A "root folder" is the top level directory of a file system. These configurations include data such as:
+A project that consists of one or more root folders, along with all of the Visual Studio Code configurations that belong to that project.
 
-settings that should be applied when that project is open
+A "root folder" is the top level directory of a file system.
 
-recommended extensions for the project (useful when sharing the configuration files with colleagues)
+These configurations include data such as:
+- Settings that should be applied when the project is open.
+- Recommended extensions for the project (useful when sharing the configuration files with colleagues)
+- Project-specific debugging configurations
 
-project-specific debugging configurations
+#### How to create a .code-workspace file?
 
-### How to create a .code-workspace file?
+Go to the VS Code menu and click File → Save Workspace As...
 
-Go to menu File → Save Workspace As...
+#### How to add root folders to a workspace?
 
-### How to add root folders to a workspace?
+Go to the VS Code menu and click File → Add Folder to Workspace....
 
-Go to menu File → Add Folder to Workspace....
+#### How to open a workspace that is defined by a .code-workspace file?
 
-### How to open a workspace that is defined by a .code-workspace file?
-
-Double click the .code-workspace file. Visual Studio Code won't open the actual file. Instead, it will read that file and open the folders that belong to that workspace.
+Double click the .code-workspace file. VS Code won't open the actual file. Instead, it will read that file and open the folders that belong to that workspace.
 
 ## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
