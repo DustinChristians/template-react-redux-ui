@@ -17,54 +17,38 @@ In the project directory, you can run:
 
 #### `npm start`
 
-Runs the app in the development mode.<br  />
-
+Runs the app in development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br  />
-
+The page will reload if you make edits.
 You will also see any lint errors in the console.
 
 #### `npm test`
 
-Launches the test runner in the interactive watch mode.<br  />
-
+Launches the test runner in the interactive watch mode.
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 #### `npm run build`
 
-Builds the app for production to the `build` folder.<br  />
-
+Builds the app for production to the `build` folder.
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br  />
-
+The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
-
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### Troubleshooting
 
 1. Run `npm install` - If you forget to do this, you'll get an error when you try to start the app later.
-
-2. Don't run the project from a symbolic link. It will cause issues with file watches.
-
-3. Delete any .eslintrc in your user directory and disable any ESLint plugin / custom rules within your editor since these will conflict with the ESLint rules defined in the app.
-
-4. On Windows? Open your console as an administrator. This will assure the console has the necessary rights to perform installs.
-
-5. Ensure you do not have NODE_ENV=production in your env variables as it will not install the devDependencies. To check run this on the command line: `set NODE_ENV`. If it comes back as production, you need to clear this env variable.
-
-6. Nothing above work? Delete your node_modules folder and re-run npm install.
+2. Delete any .eslintrc in your user directory and disable any ESLint plugin / custom rules within your editor since these will conflict with the ESLint rules defined in the app.
+3. On Windows? Open your console as an administrator. This will assure the console has the necessary rights to perform installs.
+4. Ensure you do not have NODE_ENV=production in your env variables as it will not install the devDependencies. To check run this on the command line: `set NODE_ENV`. If it comes back as production, you need to clear this env variable.
+5. Nothing above work? Delete your node_modules folder and re-run npm install.
 
 ### Prettier Setup
 
 The VS Code Prettier extension can be used to auto-format your code on save.
 
 1. Click on the extensions icon on the left side-bar and search for Prettier and click install.
-
 2. Then, in the VS Code main toolbar, click on Code -> Preferences -> Settings
-
 3. Within the settings search for FormatOnSave and make sure the setting is enabled.
 
 ### ES7 React/Redux/GraphQL/React-Native snippets extension
@@ -88,40 +72,22 @@ Other [React Starter Projects](https://www.javascriptstuff.com/react-starter-pro
 ### 2. Creating an application using the above tool-chain will scaffold a new project like so:
 
 your-app
-
 ├── README.md
-
 ├── node_modules
-
 ├── package.json
-
 ├── .gitignore
-
 ├── public
-
   │ ├── favicon.ico
-
   │ ├── index.html
-
   │ └── manifest.json
-
 └── src
-
 ├── App.css
-
 ├── App.js
-
 ├── App.test.js
-
 ├── index.css
-
 ├── index.js
-
 ├── logo.svg
-
 └── serviceWorker.js
-
-
 
 ### 3. To run the app, use the following command in a terminal window
 
@@ -129,7 +95,7 @@ your-app
 
 - You should be able to browse to http://localhost:3000
 
-### 4. Install SASS
+### 4. Install [SASS](https://sass-lang.com/)
 
 -  `npm install node-sass --save`
 
@@ -137,7 +103,7 @@ your-app
 
 - Import `App.scss` instead of the `.css` file in the `App.js` file
 
-### 5. Install ESLint
+### 5. Install [ESLint](https://eslint.org/docs/user-guide/configuring)
 
 - ESLint will get installed as part of the “Create-React-App” dependencies.
 
@@ -167,26 +133,7 @@ You will be asked several questions for configuring ES Lint, answer them as foll
 
 You will be prompted to install the ESLint config for Airbnb. Type `yes` to install.
 
-Open the .eslintrc file and set the rules object to:
-
-    "rules": {
-      "no-debugger": "off",
-      "no-console": "warn",
-      "no-unused-vars": "warn",
-      "react/prop-types": "warn"
-    }
-
-Next, in .eslintrc, add the settings object that specifies the version of React in use as required
-
-by eslint-plugin-react as follows:
-
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
-    }
-
-### 6. Install StyleLint
+### 6. Install [StyleLint](https://stylelint.io/)
 
 -  `npm i -g stylelint-cli`
 
@@ -203,52 +150,12 @@ Use --save-dev to install these as dev dependencies. We don't need them for prod
 -  `npm i --save-dev stylelint-order`
 
 Create the .stylelintrc.json configuration file in the project root.
-
-  {
-  "extends": "stylelint-config-standard",
-  "plugins": ["stylelint-order"],
-    "rules": {
-      "at-rule-no-unknown": null,
-      "function-name-case": null,
-      "color-hex-case": "upper",
-      "color-named": "always-where-possible",
-      "order/order": ["custom-properties", "declarations"],
-      "order/properties-alphabetical-order": [true, { "severity": "warning" }]
-    }
-  }
-
-Create the .stylelintignore file in the root directory:
-
-    ./*
-    !src/
-    src/styles/plugins/**/*.scss
-    src/styles/plugins/**/_.css
-    **/_.min.css
-    obj/
-
 Add the Stylelint extension for VSCode (adds realtime linter error reporting)
-
 Edit the Stylelint extension settings in VS Code and make sure the `Stylelint` setting is enabled.
 
-### 7. Add an Editor Config
+### 7. Add an [EditorConfig](https://editorconfig.org/)
 
-  You can add an [EditorConfig](https://editorconfig.org/) file to your project or codebase to enforce consistent coding styles for everyone that works in the codebase. EditorConfig settings take precedence over global Visual Studio text editor settings. This means that you can tailor each codebase to use text editor settings that are specific to that project.
-
-Add a file in the root directory called .editorconfig and add the following settings:
-
-    [*]
-
-    charset = utf-8
-
-    indent_style = space
-
-    indent_size = 2
-
-    end_of_line = crlf
-
-    insert_final_newline = true
-
-    trim_trailing_whitespace = true
+  You can add an EditorConfig file to your project or codebase to enforce consistent coding styles for everyone that works in the codebase. EditorConfig settings take precedence over global Visual Studio text editor settings. This means that you can tailor each codebase to use text editor settings that are specific to that project.
 
 8. Workspace File
 
@@ -273,38 +180,6 @@ Go to menu File → Add Folder to Workspace....
 ### How to open a workspace that is defined by a .code-workspace file?
 
 Double click the .code-workspace file. Visual Studio Code won't open the actual file. Instead, it will read that file and open the folders that belong to that workspace.
-
-### Create a new workspace file and add the following (update if necessary):
-
-{
-"extensions": {
-  "recommendations": [
-    "dbaeumer.vscode-eslint",
-    "shinnn.stylelint",
-    "esbenp.prettier-vscode",
-    "editorconfig.editorconfig",
-    "streetsidesoftware.code-spell-checker",
-    "dsznajder.es7-react-js-snippets"
-  ]
-},
-"folders": [
-  {
-    "path": "."
-  }
-],
-"settings": {
-  "files.encoding": "utf8",
-  "files.eol": "\r\n",
-  "editor.insertSpaces": true,
-  "editor.tabSize": 2,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "eslint.CodeActionsOnSave": false,
-  "prettier-eslintIntegration": true,
-  "prettier.singleQuote": true,
-  "prettier-stylelintIntegration": true
-}
-}
 
 ## Learn More
 

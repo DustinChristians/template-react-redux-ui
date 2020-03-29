@@ -20,6 +20,8 @@
     "no-debugger": "off",
     "no-console": "warn",
     "no-unused-vars": "warn",
-    "react/prop-types": "warn"
+    "react/prop-types": "warn",
+    "linebreak-style": ["error", "windows"],
+    "react/jsx-filename-extension": [0]
   }
 }
