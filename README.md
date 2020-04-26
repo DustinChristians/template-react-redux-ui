@@ -43,14 +43,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 4. Ensure you do not have NODE_ENV=production in your env variables as it will not install the devDependencies. To check run this on the command line: `set NODE_ENV`. If it comes back as production, you need to clear this env variable.
 5. Nothing above work? Delete your node_modules folder and re-run npm install.
 
-### [Prettier](https://prettier.io/) Setup
-
-The VS Code Prettier extension can be used to auto-format your code on save.
-
-1. Click on the extensions icon on the left side-bar and search for Prettier and click install.
-2. Then, in the VS Code main toolbar, click on Code -> Preferences -> Settings
-3. Within the settings search for FormatOnSave and make sure the setting is enabled.
-
 ### [ES7 React/Redux/GraphQL/React-Native snippets extension](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
 
 A VS Code extension that provides shortcuts for creating React/Redux snippets.
@@ -103,35 +95,28 @@ your-app<br />
 
 - Import `App.scss` instead of the `.css` file in the `App.js` file
 
-### 5. Install [ESLint](https://eslint.org/docs/user-guide/configuring)
+### [Prettier](https://prettier.io/) Setup
+
+The VS Code Prettier extension can be used to auto-format your code on save.
+
+1. Click on the extensions icon on the left side-bar and search for Prettier and click install.
+2. Then, in the VS Code main toolbar, click on Code -> Preferences -> Settings
+3. Within the settings search for FormatOnSave and make sure the setting is enabled.
+
+### 5. [ESLint](https://eslint.org/docs/user-guide/configuring) & Prettier Setup
 
 - ESLint will get installed as part of the “Create-React-App” dependencies.
 
 - You will need to install the ESLint extension in VS Code.
 
-Configure ESLint for your project:
+- Install the ESLint and Prettier libraries locally into the project:
+  `install -D eslint prettier`
 
--  `npx eslint --init`
+- Install the Airbnb config:
+  `npx install-peerdeps --dev eslint-config-airbnb`
 
-You will be asked several questions for configuring ES Lint, answer them as follows:
-
-1. How would you like to use ESLint? `To check syntax, find problems, and enforce code style`
-
-2. What type of modules does your project use? `JavaScript modules (import/export)`
-
-3. Which framework does your project use? `React`
-
-4. Does your project use TypeScript? `No`
-
-5. Where does your code run? `Browser`
-
-6. How would you like to define a style for your project? `Use a popular style guide`
-
-7. Which style guide do you want to follow? `Airbnb: https://github.com/airbnb/javascript`
-
-8. What format do you want your config file to be in? `JSON`
-
-You will be prompted to install the ESLint config for Airbnb. Type `yes` to install.
+- Install eslint-config-prettier (disables formatting for ESLint) and eslint-plugin-prettier (allows ESLint to show formatting errors as we type)
+  `npm install -D eslint-config-prettier eslint-plugin-prettier`
 
 ### 6. Install [StyleLint](https://stylelint.io/)
 
@@ -162,8 +147,6 @@ Edit the Stylelint extension settings in VS Code and make sure the `Stylelint` s
 #### What is a workspace?
 
 A project that consists of one or more root folders, along with all of the Visual Studio Code configurations that belong to that project.
-
-A "root folder" is the top level directory of a file system.
 
 These configurations include data such as:
 - Settings that should be applied when the project is open.
