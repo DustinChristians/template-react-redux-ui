@@ -1,22 +1,10 @@
 {
-  "extends": "stylelint-config-standard",
-  "plugins": [
-    "stylelint-order"
-  ],
-  "rules": {
-    "at-rule-no-unknown": null,
-    "function-name-case": null,
-    "color-hex-case": "upper",
-    "color-named": "always-where-possible",
-    "order/order": [
-      "custom-properties",
-      "declarations"
-    ],
-    "order/properties-alphabetical-order": [
-      true,
-      {
-        "severity": "warning"
-      }
-    ]
-  }
+    "extends": "stylelint-config-standard",
+    "plugins": ["stylelint-order"],
+    "rules": {
+        "at-rule-no-unknown": null,
+        "function-name-case": "lower",
+        "order/order": ["custom-properties", "declarations"],
+        "order/properties-alphabetical-order": [true, {"severity": "warning"}]
+    }
 }
