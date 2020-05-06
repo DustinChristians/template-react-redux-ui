@@ -95,13 +95,7 @@ your-app<br />
 ├── logo.svg<br />
 └── serviceWorker.js<br />
 
-### 3. To run the app, use the following command in a terminal window
-
-- `npm start`
-
-- You should be able to browse to http://localhost:3000
-
-### 4. Install [SASS](https://sass-lang.com/)
+### 3. Install [SASS](https://sass-lang.com/)
 
 - `npm install node-sass --save`
 
@@ -109,7 +103,7 @@ your-app<br />
 
 - Import `App.scss` instead of the `.css` file in the `App.js` file
 
-### 5. [ESLint](https://eslint.org/docs/user-guide/configuring) & Prettier Setup
+### 4. [ESLint](https://eslint.org/docs/user-guide/configuring) & Prettier Setup
 
 - ESLint will get installed as part of the “Create-React-App” dependencies.
 
@@ -124,7 +118,7 @@ your-app<br />
 - Install eslint-config-prettier (disables formatting for ESLint) and eslint-plugin-prettier (allows ESLint to show formatting errors as we type)
   `npm install -D eslint-config-prettier eslint-plugin-prettier`
 
-### 6. Install [StyleLint](https://stylelint.io/)
+### 5. Install [StyleLint](https://stylelint.io/)
 
 - `npm i -g stylelint-cli`
 
@@ -144,11 +138,11 @@ Create the .stylelintrc configuration file in the project root.
 Add the Stylelint extension for VSCode (adds realtime linter error reporting)
 Edit the Stylelint extension settings in VS Code and make sure the `Stylelint` setting is enabled.
 
-### 7. Add an [EditorConfig](https://editorconfig.org/)
+### 6. Add an [EditorConfig](https://editorconfig.org/)
 
-You can add an EditorConfig file to your project or codebase to enforce consistent coding styles for everyone that works in the codebase. EditorConfig settings take precedence over global Visual Studio text editor settings. This means that you can tailor each codebase to use text editor settings that are specific to that project.
+You can add a .editorconfig file to your project or codebase to enforce consistent coding styles for everyone that works in the codebase. EditorConfig settings take precedence over global Visual Studio text editor settings. This means that you can tailor each codebase to use text editor settings that are specific to that project.
 
-### 8. Workspace File
+### 7. Workspace File
 
 #### What is a workspace?
 
