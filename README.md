@@ -69,9 +69,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Other [React Starter Projects](https://www.javascriptstuff.com/react-starter-projects/).
 
-### 1. Use the Facebook React tool-chain to spin-up a new React app.
+### 1. Use the Facebook React tool-chain to spin-up a new React app with Redux.
 
-- `npx create-react-app your-app`
+- `npx create-react-app my-app --template redux`
 
 - The above command will setup a React dev environment, install and configure Webpack, Babel, ESLint and Prettier.
 
@@ -94,6 +94,20 @@ your-app<br />
 ├── index.js<br />
 ├── logo.svg<br />
 └── serviceWorker.js<br />
+
+### 3. Install [Redux](https://redux.js.org/introduction/getting-started)
+
+Redux makes it easier to manage state in an application. Redux manages the data displayed and the application's response to user actions.
+
+- Redux was installed by the create-react-app step so we don't need to npm install it.
+
+The standard way to use synchronous action creators with network requests is to use the Redux Thunk middleware. By using this specific middleware an action creator can return a function instead of an action object. This way, the action creator becomes a thunk. This function doesn't need to be pure; it is thus allowed to have side effects, including executing asynchronous API calls. The function can also dispatch actions.
+
+- `npm install redux-thunk`
+
+The redux immutable state invariant will warn us if we accidentally mutate redux state.
+
+- `npm install redux-immutable-state-invariant`
 
 ### 3. Install [SASS](https://sass-lang.com/)
 
