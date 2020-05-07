@@ -103,15 +103,15 @@ Redux makes it easier to manage state in an application. Redux manages the data 
 
 The standard way to use synchronous action creators with network requests is to use the Redux Thunk middleware. By using this specific middleware an action creator can return a function instead of an action object. This way, the action creator becomes a thunk. This function doesn't need to be pure; it is thus allowed to have side effects, including executing asynchronous API calls. The function can also dispatch actions.
 
-- `npm install redux-thunk`
+- `npm i redux-thunk`
 
 The redux immutable state invariant will warn us if we accidentally mutate redux state.
 
-- `npm install --save-dev redux-immutable-state-invariant`
+- `npm i -D redux-immutable-state-invariant`
 
 ### 3. Install [SASS](https://sass-lang.com/)
 
-- `npm install node-sass --save`
+- `npm i node-sass`
 
 - Rename the `App.css` file to `App.scss`.
 
@@ -124,29 +124,32 @@ The redux immutable state invariant will warn us if we accidentally mutate redux
 - You will need to install the ESLint extension in VS Code.
 
 - Install the ESLint and Prettier libraries locally into the project:
-  `install -D eslint prettier`
 
-- Install the Airbnb config:
-  `npx install-peerdeps --dev eslint-config-airbnb`
+  `npm i -D eslint prettier`
+
+- Install the Airbnb config. The peer dependencies are not automatically installed on npm install
+  so the `install-peerdeps` flag is included.
+
+  `npx install-peerdeps -D eslint-config-airbnb`
 
 - Install eslint-config-prettier (disables formatting for ESLint) and eslint-plugin-prettier (allows ESLint to show formatting errors as we type)
-  `npm install -D eslint-config-prettier eslint-plugin-prettier`
+  `npm i -D eslint-config-prettier eslint-plugin-prettier`
 
 ### 5. Install [StyleLint](https://stylelint.io/)
 
 - `npm i -g stylelint-cli`
 
-Use --save-dev to install these as dev dependencies. We don't need them for production builds.
+Use -D to install these as dev dependencies. We don't need them for production builds.
 
-- `npm i --save-dev stylelint`
+- `npm i -D stylelint`
 
-- `npm i --save-dev stylelint-config-recommended`
+- `npm i -D stylelint-config-recommended`
 
-- `npm i --save-dev stylelint-config-standard`
+- `npm i -D stylelint-config-standard`
 
-- `npm i --save-dev stylelint-config-sass-guidelines`
+- `npm i -D stylelint-config-sass-guidelines`
 
-- `npm i --save-dev stylelint-order`
+- `npm i -D stylelint-order`
 
 Create the .stylelintrc configuration file in the project root.
 Add the Stylelint extension for VSCode (adds realtime linter error reporting)
