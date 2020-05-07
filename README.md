@@ -107,7 +107,7 @@ The standard way to use synchronous action creators with network requests is to 
 
 The redux immutable state invariant will warn us if we accidentally mutate redux state.
 
-- `npm install redux-immutable-state-invariant`
+- `npm install --save-dev redux-immutable-state-invariant`
 
 ### 3. Install [SASS](https://sass-lang.com/)
 
