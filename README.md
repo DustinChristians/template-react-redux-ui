@@ -20,6 +20,12 @@ Automatically runs the app in development mode.
 Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
 The page will hot-reload if you make edits.
 
+#### `npm run start:dev`
+
+Automatically runs the app in development mode and starts a mock JSON API server in parallel for testing API calls locally.
+Open [http://localhost:3000](http://localhost:3000) to view the app in your browser. The page will hot-reload if you make edits.
+Open [http://localhost:3001](http://localhost:3001) to view raw data from the JSON server.
+
 #### `npm run build`
 
 Builds the app for production to the `build` folder.

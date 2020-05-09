@@ -48,7 +48,7 @@ function validateMessage(message) {
 }
 
 server.post('/messages/', (req, res) => {
-  const error = -req.body;
+  const error = validateMessage(req.body);
   if (error) {
     res.status(400).send(error);
   }
