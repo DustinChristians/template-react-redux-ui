@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as messageActions from '../redux/actions/message.actions';
 import MessagesList from '../components/MessagesList';
+import TextInput from '../components/common/TextInput';
 
 const MessagesPage = ({ messages, loadMessages }) => {
+  const [newMessage, setNewMessage] = useState('');
+
   useEffect(() => {
     if (messages.length === 0) {
       loadMessages().catch((error) => {
@@ -13,10 +16,22 @@ const MessagesPage = ({ messages, loadMessages }) => {
     }
   }, [loadMessages, messages.length]);
 
+  function handleChange(event) {
+    const { value } = event.target;
+    setNewMessage(value);
+  }
+
   return (
     <>
       <h2>Messages</h2>
       <MessagesList messages={messages} />
+      <TextInput
+        name="addMessage"
+        label="New Message"
+        placeholder="Add a message"
+        value={newMessage}
+        onChange={handleChange}
+      />
     </>
   );
 };
