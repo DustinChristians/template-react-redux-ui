@@ -14,6 +14,7 @@ const messages = [
 ];
 
 const newMessage = {
+  id: null,
   text: '',
 };
 
