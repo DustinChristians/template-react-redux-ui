@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
 import * as messageActions from '../redux/actions/message.actions';
 import MessagesList from '../components/MessagesList';
 
-const MessagesPage = ({ messages, actions }) => {
+const MessagesPage = ({ messages, loadMessages }) => {
   useEffect(() => {
     if (messages.length === 0) {
-      actions.loadMessages().catch((error) => {
+      loadMessages().catch((error) => {
         alert(`Loading messages failed ${error}`);
       });
     }
-  }, [actions, messages.length]);
+  }, [loadMessages, messages.length]);
 
   return (
     <>
@@ -24,7 +23,7 @@ const MessagesPage = ({ messages, actions }) => {
 
 MessagesPage.propTypes = {
   messages: PropTypes.instanceOf(Array).isRequired,
-  actions: PropTypes.instanceOf(Object).isRequired,
+  loadMessages: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -35,12 +34,8 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: {
-      loadMessages: bindActionCreators(messageActions.loadMessages, dispatch),
-    },
-  };
-}
+const mapDispatchToProps = {
+  loadMessages: messageActions.loadMessages,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagesPage);
