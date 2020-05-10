@@ -1,23 +1,17 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Home from './components/Home';
-import NotFound from './components/NotFound';
-import GetMessages from './components/GetMessages';
-import PostMessages from './components/PostMessages';
-import PutMessages from './components/PutMessages';
-import DeleteMessages from './components/DeleteMessages';
+import HomePage from './pages/HomePage';
+import NotFoundPage from './pages/NotFoundPage';
+import MessagesPage from './pages/MessagesPage';
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/get-messages" component={GetMessages} />
-        <Route exact path="/post-messages" component={PostMessages} />
-        <Route exact path="/put-messages" component={PutMessages} />
-        <Route exact path="/delete-messages" component={DeleteMessages} />
-        <Route component={NotFound} />
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/messages" component={MessagesPage} />
+        <Route component={NotFoundPage} />
       </Switch>
     </div>
   );

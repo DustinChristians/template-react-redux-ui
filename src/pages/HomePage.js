@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../logo.svg';
 import '../App.scss';
 
-function Home() {
+function HomePage() {
   return (
     <div className="App">
       <header className="App-header">
@@ -23,24 +23,10 @@ function Home() {
             </a>
           </li>
           <li>
-            <Link to="/get-messages" className="App-link">
-              Get Messages
-            </Link>
-          </li>
-          <li>
-            <Link to="/post-messages" className="App-link">
-              Post Messages
-            </Link>
-          </li>
-          <li>
-            <Link to="/put-messages" className="App-link">
-              Put Messages
-            </Link>
-          </li>
-          <li>
-            <Link to="/delete-messages" className="App-link">
-              Delete Messages
-            </Link>
+            <Link to="/messages" className="App-link">
+              API / Redux Test Page
+            </Link>{' '}
+            (to run the mock API use: <b>npm run start:dev</b>)
           </li>
         </ul>
       </header>
@@ -48,4 +34,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomePage;

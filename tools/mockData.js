@@ -1,11 +1,14 @@
 const messages = [
   {
+    id: 1,
     text: 'At vero eos et accusamus',
   },
   {
+    id: 2,
     text: 'Nam libero tempore',
   },
   {
+    id: 3,
     text: 'rerum necessitatibus saepe',
   },
 ];
