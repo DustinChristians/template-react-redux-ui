@@ -5,8 +5,9 @@ import * as messageActions from '../redux/actions/message.actions';
 import MessagesList from '../components/MessagesList';
 import TextInput from '../components/common/TextInput';
 
-const MessagesPage = ({ messages, loadMessages }) => {
-  const [newMessage, setNewMessage] = useState('');
+const MessagesPage = ({ messages, loadMessages, saveMessage }) => {
+  const [newMessage, setNewMessage] = useState({});
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (messages.length === 0) {
@@ -18,7 +19,13 @@ const MessagesPage = ({ messages, loadMessages }) => {
 
   function handleChange(event) {
     const { value } = event.target;
-    setNewMessage(value);
+    setNewMessage({ ...newMessage, text: value });
+  }
+
+  function handleSave(event) {
+    event.preventDefault();
+    setSaving(true);
+    saveMessage(newMessage).then(setSaving(false));
   }
 
   return (
@@ -29,9 +36,12 @@ const MessagesPage = ({ messages, loadMessages }) => {
         name="addMessage"
         label="New Message"
         placeholder="Add a message"
-        value={newMessage}
+        value={newMessage.text}
         onChange={handleChange}
       />
+      <button type="submit" onClick={handleSave} disabled={saving} className="btn btn-primary">
+        {saving ? 'Saving...' : 'Save'}
+      </button>
     </>
   );
 };
@@ -39,6 +49,7 @@ const MessagesPage = ({ messages, loadMessages }) => {
 MessagesPage.propTypes = {
   messages: PropTypes.instanceOf(Array).isRequired,
   loadMessages: PropTypes.func.isRequired,
+  saveMessage: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -51,6 +62,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   loadMessages: messageActions.loadMessages,
+  saveMessage: messageActions.saveMessage,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagesPage);
