@@ -47,10 +47,12 @@ function validateMessage(message) {
   return '';
 }
 
-server.post('/messages/', (req, res) => {
+server.post('/messages/', (req, res, next) => {
   const error = validateMessage(req.body);
   if (error) {
     res.status(400).send(error);
+  } else {
+    next();
   }
 });
 
