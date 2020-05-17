@@ -6,24 +6,38 @@ import MessagesList from '../components/MessagesList';
 import TextInput from '../components/common/TextInput';
 
 const MessagesPage = ({ messages, loadMessages, saveMessage }) => {
+  const [editedMessages, setEditedMessages] = useState([]);
   const [newMessage, setNewMessage] = useState({});
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (messages.length === 0) {
-      loadMessages().catch((error) => {
-        alert(`Loading messages failed ${error}`);
-      });
+      loadMessages()
+        .then((loadedMessages) => {
+          setEditedMessages([loadedMessages]);
+        })
+        .catch((error) => {
+          alert(`Loading messages failed ${error}`);
+        });
+    } else {
+      setEditedMessages(messages);
     }
   }, [loadMessages, messages.length]);
 
-  function handleChange(event) {
+  function handleSave(messageId) {
+    const message = editedMessages.find(({ id }) => id === messageId);
+
+    setSaving(true);
+    saveMessage(message).then(setSaving(false));
+  }
+
+  function handleNewChange(event) {
     const { value } = event.target;
+
     setNewMessage({ ...newMessage, text: value });
   }
 
-  function handleSave(event) {
-    event.preventDefault();
+  function handleNewSave() {
     setSaving(true);
     saveMessage(newMessage).then(setSaving(false));
   }
@@ -31,15 +45,22 @@ const MessagesPage = ({ messages, loadMessages, saveMessage }) => {
   return (
     <>
       <h2>Messages</h2>
-      <MessagesList messages={messages} />
+      {editedMessages.length && (
+        <MessagesList
+          messages={editedMessages}
+          saving={saving}
+          setMessages={setEditedMessages}
+          handleSave={handleSave}
+        />
+      )}
       <TextInput
-        name="addMessage"
+        name="newMessage"
         label="New Message"
         placeholder="Add a message"
         value={newMessage.text}
-        onChange={handleChange}
+        onChange={handleNewChange}
       />
-      <button type="submit" onClick={handleSave} disabled={saving} className="btn btn-primary">
+      <button type="submit" onClick={handleNewSave} disabled={saving} className="btn btn-primary">
         {saving ? 'Saving...' : 'Save'}
       </button>
     </>

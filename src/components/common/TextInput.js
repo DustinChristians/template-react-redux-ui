@@ -26,6 +26,7 @@ const TextInput = ({ name, label, onChange, placeholder, value, error }) => {
 };
 
 TextInput.defaultProps = {
+  label: '',
   placeholder: '',
   value: '',
   error: '',
@@ -33,8 +34,8 @@ TextInput.defaultProps = {
 
 TextInput.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  label: PropTypes.string,
   placeholder: PropTypes.string,
   value: PropTypes.string,
   error: PropTypes.string,
