@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as messageActions from '../redux/actions/message.actions';
-import MessagesList from '../components/MessagesList';
+import TextEditList from '../components/TextEditList';
 import TextInput from '../components/common/TextInput';
 
 const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage }) => {
@@ -53,12 +53,12 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage }) =>
     <>
       <h2>Messages</h2>
       {editedMessages.length && (
-        <MessagesList
-          messages={editedMessages}
-          saving={saving}
-          setMessages={setEditedMessages}
+        <TextEditList
+          items={editedMessages}
+          setItems={setEditedMessages}
           handleSave={handleSave}
           handleDelete={handleDelete}
+          saving={saving}
         />
       )}
       <TextInput

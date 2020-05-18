@@ -2,23 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextInput from './common/TextInput';
 
-const GetMessages = ({ messages, setMessages, saving, handleSave, handleDelete }) => {
+const TextEditList = ({ items, setItems, handleSave, handleDelete, saving }) => {
   return (
     <>
-      {messages.map((message, i) => (
-        <div key={message.id}>
+      {items.map((item, i) => (
+        <div key={item.id}>
           <TextInput
-            name="editMessage"
-            value={message.text}
+            name="editItem"
+            value={item.text}
             onChange={(event) => {
-              const updatedMessages = messages;
-              updatedMessages[i].text = event.target.value;
-              setMessages([...messages]);
+              const updatedItems = items;
+              updatedItems[i].text = event.target.value;
+              setItems([...items]);
             }}
           />
           <button
             type="submit"
-            onClick={handleSave.bind(this, message.id)}
+            onClick={handleSave.bind(this, item.id)}
             disabled={saving}
             className="btn btn-primary"
           >
@@ -26,7 +26,7 @@ const GetMessages = ({ messages, setMessages, saving, handleSave, handleDelete }
           </button>
           <button
             type="submit"
-            onClick={handleDelete.bind(this, message.id)}
+            onClick={handleDelete.bind(this, item.id)}
             disabled={saving}
             className="btn btn-primary"
           >
@@ -38,17 +38,17 @@ const GetMessages = ({ messages, setMessages, saving, handleSave, handleDelete }
   );
 };
 
-GetMessages.propTypes = {
-  messages: PropTypes.arrayOf(
+TextEditList.propTypes = {
+  items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
       text: PropTypes.string,
     })
   ).isRequired,
-  saving: PropTypes.bool.isRequired,
-  setMessages: PropTypes.func.isRequired,
+  setItems: PropTypes.func.isRequired,
   handleSave: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
+  saving: PropTypes.bool.isRequired,
 };
 
-export default GetMessages;
+export default TextEditList;
