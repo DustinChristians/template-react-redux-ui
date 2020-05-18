@@ -5,7 +5,7 @@ import * as messageActions from '../redux/actions/message.actions';
 import MessagesList from '../components/MessagesList';
 import TextInput from '../components/common/TextInput';
 
-const MessagesPage = ({ messages, loadMessages, saveMessage }) => {
+const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage }) => {
   const [editedMessages, setEditedMessages] = useState([]);
   const [newMessage, setNewMessage] = useState({});
   const [saving, setSaving] = useState(false);
@@ -23,6 +23,13 @@ const MessagesPage = ({ messages, loadMessages, saveMessage }) => {
       setEditedMessages(messages);
     }
   }, [loadMessages, messages.length]);
+
+  function handleDelete(messageId) {
+    const message = editedMessages.find(({ id }) => id === messageId);
+
+    setSaving(true);
+    deleteMessage(message).then(setSaving(false));
+  }
 
   function handleSave(messageId) {
     const message = editedMessages.find(({ id }) => id === messageId);
@@ -51,6 +58,7 @@ const MessagesPage = ({ messages, loadMessages, saveMessage }) => {
           saving={saving}
           setMessages={setEditedMessages}
           handleSave={handleSave}
+          handleDelete={handleDelete}
         />
       )}
       <TextInput
@@ -71,6 +79,7 @@ MessagesPage.propTypes = {
   messages: PropTypes.instanceOf(Array).isRequired,
   loadMessages: PropTypes.func.isRequired,
   saveMessage: PropTypes.func.isRequired,
+  deleteMessage: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -84,6 +93,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   loadMessages: messageActions.loadMessages,
   saveMessage: messageActions.saveMessage,
+  deleteMessage: messageActions.deleteMessage,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagesPage);

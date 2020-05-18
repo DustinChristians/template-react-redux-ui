@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextInput from './common/TextInput';
 
-const GetMessages = ({ messages, setMessages, saving, handleSave }) => {
+const GetMessages = ({ messages, setMessages, saving, handleSave, handleDelete }) => {
   return (
     <>
       {messages.map((message, i) => (
@@ -24,6 +24,14 @@ const GetMessages = ({ messages, setMessages, saving, handleSave }) => {
           >
             {saving ? 'Saving...' : 'Save'}
           </button>
+          <button
+            type="submit"
+            onClick={handleDelete.bind(this, message.id)}
+            disabled={saving}
+            className="btn btn-primary"
+          >
+            {saving ? 'Deleting...' : 'Delete'}
+          </button>
         </div>
       ))}
     </>
@@ -40,6 +48,7 @@ GetMessages.propTypes = {
   saving: PropTypes.bool.isRequired,
   setMessages: PropTypes.func.isRequired,
   handleSave: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
 
 export default GetMessages;
