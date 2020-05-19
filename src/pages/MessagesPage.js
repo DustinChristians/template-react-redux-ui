@@ -50,7 +50,7 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage }) =>
   }
 
   return (
-    <>
+    <div className="container container-fluid">
       <h2>Messages</h2>
       {editedMessages.length && (
         <TextEditList
@@ -63,15 +63,16 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage }) =>
       )}
       <TextInput
         name="newMessage"
-        label="New Message"
         placeholder="Add a message"
         value={newMessage.text}
         onChange={handleNewChange}
-      />
-      <button type="submit" onClick={handleNewSave} disabled={saving} className="btn btn-primary">
-        {saving ? 'Saving...' : 'Save'}
-      </button>
-    </>
+      >
+        {' '}
+        <button type="submit" onClick={handleNewSave} disabled={saving} className="btn btn-primary">
+          {saving ? 'Saving...' : 'Save'}
+        </button>
+      </TextInput>
+    </div>
   );
 };
 

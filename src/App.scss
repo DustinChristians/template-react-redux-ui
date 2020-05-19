@@ -1,3 +1,18 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1140px;
+  padding: 0 15px;
+}
+
 .App {
   text-align: center;
 }
@@ -40,4 +55,13 @@
 
 ul {
   list-style: none;
+}
+
+.form-group {
+  display: flex;
+  margin: 15px 0;
+
+  button {
+    margin-left: 5px;
+  }
 }

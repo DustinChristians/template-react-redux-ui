@@ -15,23 +15,24 @@ const TextEditList = ({ items, setItems, handleSave, handleDelete, saving }) => 
               updatedItems[i].text = event.target.value;
               setItems([...items]);
             }}
-          />
-          <button
-            type="submit"
-            onClick={handleSave.bind(this, item.id)}
-            disabled={saving}
-            className="btn btn-primary"
           >
-            {saving ? 'Saving...' : 'Save'}
-          </button>
-          <button
-            type="submit"
-            onClick={handleDelete.bind(this, item.id)}
-            disabled={saving}
-            className="btn btn-primary"
-          >
-            {saving ? 'Deleting...' : 'Delete'}
-          </button>
+            <button
+              type="submit"
+              onClick={handleSave.bind(this, item.id)}
+              disabled={saving}
+              className="btn btn-primary"
+            >
+              {saving ? 'Saving...' : 'Save'}
+            </button>
+            <button
+              type="submit"
+              onClick={handleDelete.bind(this, item.id)}
+              disabled={saving}
+              className="btn btn-primary"
+            >
+              {saving ? 'Deleting...' : 'Delete'}
+            </button>
+          </TextInput>
         </div>
       ))}
     </>
