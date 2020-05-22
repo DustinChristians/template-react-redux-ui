@@ -26,7 +26,12 @@ function HomePage() {
             <Link to="/messages" className="App-link">
               API / Redux Test Page
             </Link>{' '}
-            (to run the mock API use: <b>npm run start:dev</b>)
+            (to run the JSON-Server mock API use: <b>npm run start:dev</b>)
+          </li>
+          <li>
+            <a href={process.env.REACT_APP_API_URL} className="App-link">
+              JSON-Server Home Page
+            </a>{' '}
           </li>
         </ul>
       </header>
