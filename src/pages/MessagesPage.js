@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useAlert } from 'react-alert';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as messageActions from '../redux/actions/message.actions';
@@ -6,36 +7,39 @@ import TextEditList from '../components/TextEditList';
 import TextInput from '../components/common/TextInput';
 
 const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage }) => {
+  const alert = useAlert();
   const [editedMessages, setEditedMessages] = useState([]);
   const [newMessage, setNewMessage] = useState({});
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (messages.length === 0) {
-      loadMessages()
-        .then((loadedMessages) => {
-          setEditedMessages([loadedMessages]);
-        })
-        .catch((error) => {
-          alert(`Loading messages failed ${error}`);
-        });
+      loadMessages().then((loadedMessages) => {
+        setEditedMessages([loadedMessages]);
+      });
     } else {
       setEditedMessages(messages);
     }
-  }, [loadMessages, messages.length]);
+  }, [loadMessages, messages, messages.length, alert]);
 
   function handleDelete(messageId) {
     const message = editedMessages.find(({ id }) => id === messageId);
 
     setSaving(true);
-    deleteMessage(message).then(setSaving(false));
+    deleteMessage(message).then(() => {
+      setSaving(false);
+      alert.success('Message deleted');
+    });
   }
 
   function handleSave(messageId) {
     const message = editedMessages.find(({ id }) => id === messageId);
 
     setSaving(true);
-    saveMessage(message).then(setSaving(false));
+    saveMessage(message).then(() => {
+      setSaving(false);
+      alert.success('Message updated');
+    });
   }
 
   function handleNewChange(event) {
@@ -46,7 +50,10 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage }) =>
 
   function handleNewSave() {
     setSaving(true);
-    saveMessage(newMessage).then(setSaving(false));
+    saveMessage(newMessage).then(() => {
+      setSaving(false);
+      alert.success('Message created');
+    });
   }
 
   return (

@@ -1,5 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { positions, Provider as AlertProvider } from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './App.scss';
 import { Provider as ReduxProvider } from 'react-redux';
@@ -10,10 +12,23 @@ import configureStore from './redux/configureStore';
 
 const store = configureStore();
 
+const options = {
+  timeout: 4000,
+  position: positions.TOP_RIGHT,
+  offset: '50px',
+};
+
 render(
   <ReduxProvider store={store}>
     <Router>
-      <App />
+      <AlertProvider
+        template={AlertTemplate}
+        timeout={options.timeout}
+        position={options.position}
+        offset={options.offset}
+      >
+        <App />
+      </AlertProvider>
     </Router>
   </ReduxProvider>,
   document.getElementById('root')
