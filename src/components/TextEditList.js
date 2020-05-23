@@ -30,7 +30,7 @@ const TextEditList = ({ items, setItems, handleSave, handleDelete, saving }) => 
               disabled={saving}
               className="btn btn-primary"
             >
-              {saving ? 'Deleting...' : 'Delete'}
+              Delete
             </button>
           </TextInput>
         </div>
