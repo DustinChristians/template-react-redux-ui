@@ -2,32 +2,31 @@ import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Spinner from '../components/common/Spinner';
 import * as messageActions from '../redux/actions/message.actions';
 import TextEditList from '../components/TextEditList';
 import TextInput from '../components/common/TextInput';
 
-const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage }) => {
+const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, loading }) => {
   const alert = useAlert();
   const [editedMessages, setEditedMessages] = useState([]);
   const [newMessage, setNewMessage] = useState({});
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    if (messages.length === 0) {
+    if (messages.length === 0 && !loading) {
       loadMessages().then((loadedMessages) => {
         setEditedMessages([loadedMessages]);
       });
     } else {
       setEditedMessages(messages);
     }
-  }, [loadMessages, messages, messages.length, alert]);
+  }, [loadMessages, messages, messages.length, loading]);
 
   function handleDelete(messageId) {
     const message = editedMessages.find(({ id }) => id === messageId);
 
-    setSaving(true);
     deleteMessage(message).then(() => {
-      setSaving(false);
       alert.success('Message deleted');
     });
   }
@@ -59,26 +58,37 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage }) =>
   return (
     <div className="container container-fluid">
       <h2>Messages</h2>
-      {editedMessages.length && (
-        <TextEditList
-          items={editedMessages}
-          setItems={setEditedMessages}
-          handleSave={handleSave}
-          handleDelete={handleDelete}
-          saving={saving}
-        />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          {editedMessages.length && (
+            <TextEditList
+              items={editedMessages}
+              setItems={setEditedMessages}
+              handleSave={handleSave}
+              handleDelete={handleDelete}
+              saving={saving}
+            />
+          )}
+          <TextInput
+            name="newMessage"
+            placeholder="Add a message"
+            value={newMessage.text}
+            onChange={handleNewChange}
+          >
+            {' '}
+            <button
+              type="submit"
+              onClick={handleNewSave}
+              disabled={saving}
+              className="btn btn-primary"
+            >
+              {saving ? 'Saving...' : 'Save'}
+            </button>
+          </TextInput>
+        </>
       )}
-      <TextInput
-        name="newMessage"
-        placeholder="Add a message"
-        value={newMessage.text}
-        onChange={handleNewChange}
-      >
-        {' '}
-        <button type="submit" onClick={handleNewSave} disabled={saving} className="btn btn-primary">
-          {saving ? 'Saving...' : 'Save'}
-        </button>
-      </TextInput>
     </div>
   );
 };
@@ -88,6 +98,7 @@ MessagesPage.propTypes = {
   loadMessages: PropTypes.func.isRequired,
   saveMessage: PropTypes.func.isRequired,
   deleteMessage: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -95,6 +106,7 @@ function mapStateToProps(state) {
     messages: state.messages.map((message) => ({
       ...message,
     })),
+    loading: state.apiCallsInProgress > 0,
   };
 }
 
