@@ -58,7 +58,7 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
   return (
     <div className="container container-fluid">
       <h2>Messages</h2>
-      {loading ? (
+      {messages.length === 0 ? (
         <Spinner />
       ) : (
         <>
