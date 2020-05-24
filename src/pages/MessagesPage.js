@@ -32,8 +32,21 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
     });
   }
 
+  function formIsValid(message) {
+    const formErrors = {};
+
+    if (Object.keys(message).length === 0) {
+      formErrors.message = 'A message field must not be empty.';
+    }
+
+    setErrors(formErrors);
+    // Form is valid if the errors object still has no properties
+    return Object.keys(errors).length === 0;
+  }
+
   function handleSave(messageId) {
     const message = editedMessages.find(({ id }) => id === messageId);
+    if (!formIsValid(message)) return;
 
     setSaving(true);
     saveMessage(message)
@@ -54,6 +67,8 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
   }
 
   function handleNewSave() {
+    if (!formIsValid(newMessage)) return;
+
     setSaving(true);
     saveMessage(newMessage)
       .then(() => {
@@ -92,6 +107,7 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
             placeholder="Add a message"
             value={newMessage.text}
             onChange={handleNewChange}
+            error={errors.message}
           >
             {' '}
             <button
