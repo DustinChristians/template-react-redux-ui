@@ -12,6 +12,7 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
   const [editedMessages, setEditedMessages] = useState([]);
   const [newMessage, setNewMessage] = useState({});
   const [saving, setSaving] = useState(false);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (messages.length === 0 && !loading) {
@@ -35,10 +36,15 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
     const message = editedMessages.find(({ id }) => id === messageId);
 
     setSaving(true);
-    saveMessage(message).then(() => {
-      setSaving(false);
-      alert.success('Message updated');
-    });
+    saveMessage(message)
+      .then(() => {
+        setSaving(false);
+        alert.success('Message updated');
+      })
+      .catch((error) => {
+        setSaving(false);
+        setErrors({ onSave: error.message });
+      });
   }
 
   function handleNewChange(event) {
@@ -49,10 +55,15 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
 
   function handleNewSave() {
     setSaving(true);
-    saveMessage(newMessage).then(() => {
-      setSaving(false);
-      alert.success('Message created');
-    });
+    saveMessage(newMessage)
+      .then(() => {
+        setSaving(false);
+        alert.success('Message created');
+      })
+      .catch((error) => {
+        setSaving(false);
+        setErrors({ onSave: error.message });
+      });
   }
 
   return (
@@ -62,6 +73,11 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
         <Spinner />
       ) : (
         <>
+          {errors.onSave && (
+            <div className="alert alert-danger" role="alert">
+              {errors.onSave}
+            </div>
+          )}
           {editedMessages.length && (
             <TextEditList
               items={editedMessages}
