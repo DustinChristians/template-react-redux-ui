@@ -27,9 +27,14 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
   function handleDelete(messageId) {
     const message = editedMessages.find(({ id }) => id === messageId);
 
-    deleteMessage(message).then(() => {
-      alert.success('Message deleted');
-    });
+    deleteMessage(message)
+      .then(() => {
+        alert.success('Message deleted');
+      })
+      .catch((error) => {
+        setSaving(false);
+        alert.error(error.message);
+      });
   }
 
   function handleSave(messageId) {
@@ -43,6 +48,7 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
       })
       .catch((error) => {
         setSaving(false);
+        alert.error(error.message);
         setErrors({ onSave: error.message });
       });
   }
@@ -62,6 +68,7 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
       })
       .catch((error) => {
         setSaving(false);
+        alert.error(error.message);
         setErrors({ onSave: error.message });
       });
   }
