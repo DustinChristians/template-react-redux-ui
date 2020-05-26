@@ -31,25 +31,22 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
       await deleteMessage(message);
       alert.success('Message deleted');
     } catch (error) {
-      setSaving(false);
       alert.error(error.message);
     }
   }
 
-  function handleSave(messageId) {
+  async function handleSave(messageId) {
     const message = editedMessages.find(({ id }) => id === messageId);
 
-    setSaving(true);
-    saveMessage(message)
-      .then(() => {
-        setSaving(false);
-        alert.success('Message updated');
-      })
-      .catch((error) => {
-        setSaving(false);
-        alert.error(error.message);
-        setErrors({ onSave: error.message });
-      });
+    try {
+      setSaving(true);
+      await saveMessage(message);
+      alert.success('Message updated');
+    } catch (error) {
+      alert.error(error.message);
+      setErrors({ onSave: error.message });
+    }
+    setSaving(false);
   }
 
   function handleNewChange(event) {
