@@ -24,29 +24,27 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
     }
   }, [loadMessages, messages, messages.length, loading]);
 
-  async function handleDelete(messageId) {
+  function handleDelete(messageId) {
     const message = editedMessages.find(({ id }) => id === messageId);
 
-    try {
-      await deleteMessage(message);
-      alert.success('Message deleted');
-    } catch (error) {
-      alert.error(error.message);
-    }
+    deleteMessage(message)
+      .then(alert.success('Message deleted'))
+      .catch((error) => {
+        alert.error(error.message);
+      });
   }
 
-  async function handleSave(messageId) {
+  function handleSave(messageId) {
     const message = editedMessages.find(({ id }) => id === messageId);
+    setSaving(true);
 
-    try {
-      setSaving(true);
-      await saveMessage(message);
-      alert.success('Message updated');
-    } catch (error) {
-      alert.error(error.message);
-      setErrors({ onSave: error.message });
-    }
-    setSaving(false);
+    saveMessage(message)
+      .then(alert.success('Message updated'))
+      .catch((error) => {
+        alert.error(error.message);
+        setErrors({ onSave: error.message });
+      })
+      .finally(setSaving(false));
   }
 
   function handleNewChange(event) {
@@ -57,16 +55,14 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
 
   function handleNewSave() {
     setSaving(true);
+
     saveMessage(newMessage)
-      .then(() => {
-        setSaving(false);
-        alert.success('Message created');
-      })
+      .then(alert.success('Message created'))
       .catch((error) => {
-        setSaving(false);
         alert.error(error.message);
         setErrors({ onSave: error.message });
-      });
+      })
+      .finally(setSaving(false));
   }
 
   return (
