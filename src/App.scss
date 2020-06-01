@@ -1,3 +1,10 @@
+/*
+   This CSS file is only used for testing the application after spin-up.
+   It is recommended that this file be replaced with your own CSS
+   configuration files.
+*/
+
+/* Custom CSS for Testing only */
 html {
   min-height: 100%;
   position: relative;
@@ -19,11 +26,20 @@ ul {
 
 .form-group {
   display: flex;
-  margin: 15px 0;
+  margin-top: 15px;
 
   button {
     margin-left: 5px;
   }
+}
+
+.invalid-feedback {
+  color: #dc3545;
+  display: block;
+  font-size: 80%;
+  margin-top: 0.25rem;
+  text-align: left;
+  width: 100%;
 }
 
 /* React Home Page */
@@ -70,22 +86,22 @@ ul {
 /* Spinner */
 .spinner {
   display: inline-block;
+  height: 80px;
   position: relative;
   width: 80px;
-  height: 80px;
 }
 
 .spinner div {
+  animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border: 8px solid black;
+  border-color: black transparent transparent transparent;
+  border-radius: 50%;
   box-sizing: border-box;
   display: block;
-  position: absolute;
-  width: 64px;
   height: 64px;
   margin: 8px;
-  border: 8px solid black;
-  border-radius: 50%;
-  animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: black transparent transparent transparent;
+  position: absolute;
+  width: 64px;
 }
 
 .spinner div:nth-child(1) {
@@ -104,6 +120,7 @@ ul {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
