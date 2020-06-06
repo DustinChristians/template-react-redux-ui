@@ -69,6 +69,8 @@ The VS Code Prettier extension can be used to auto-format your code on save.
 
 The extension uses the ESLint library installed in the opened workspace folder. If the folder doesn't provide one the extension looks for a global install version. If you haven't installed ESLint either locally or globally do so by running `npm install eslint` in the workspace folder for a local install or `npm install -g eslint` for a global install.
 
+(_**`After cloning this template, you can remove everything beyond this point. The following information is used to keep this template up to date.`**_)
+
 ## How this application was created
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
