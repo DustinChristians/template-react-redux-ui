@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EditableTextInput from './common/UpdateDeleteTextInput';
+import EditableTextInput from './UpdateDeleteTextInput';
 
 const TextEditList = ({ items, setItems, handleSave, handleDelete, saving, validation }) => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import TextInput from './TextInput';
+import TextInput from './common/TextInput';
 
 const EditableTextInput = ({ item, handleSave, handleDelete, onChange, saving, validation }) => {
   const { register, handleSubmit, errors } = useForm();
