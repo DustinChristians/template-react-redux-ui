@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
+import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Spinner from '../components/common/Spinner';
@@ -9,10 +10,12 @@ import TextInput from '../components/common/TextInput';
 
 const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, loading }) => {
   const alert = useAlert();
+  const { register, handleSubmit, watch, errors } = useForm();
+  const newMessageValue = watch('newMessage');
   const [editedMessages, setEditedMessages] = useState([]);
   const [newMessage, setNewMessage] = useState({});
   const [saving, setSaving] = useState(false);
-  const [errors, setErrors] = useState({});
+  const [apiErrors, setApiErrors] = useState({});
 
   useEffect(() => {
     if (messages.length === 0 && !loading) {
@@ -42,7 +45,7 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
       .then(alert.success('Message updated'))
       .catch((error) => {
         alert.error(error.message);
-        setErrors({ onSave: error.message });
+        setApiErrors({ onSave: error.message });
       })
       .finally(setSaving(false));
   }
@@ -60,7 +63,7 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
       .then(alert.success('Message created'))
       .catch((error) => {
         alert.error(error.message);
-        setErrors({ onSave: error.message });
+        setApiErrors({ onSave: error.message });
       })
       .finally(setSaving(false));
   }
@@ -72,9 +75,9 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
         <Spinner />
       ) : (
         <>
-          {errors.onSave && (
+          {apiErrors.onSave && (
             <div className="alert alert-danger" role="alert">
-              {errors.onSave}
+              {apiErrors.onSave}
             </div>
           )}
           {editedMessages.length && (
@@ -84,18 +87,21 @@ const MessagesPage = ({ messages, loadMessages, saveMessage, deleteMessage, load
               handleSave={handleSave}
               handleDelete={handleDelete}
               saving={saving}
+              validation={{ required: true }}
             />
           )}
           <TextInput
             name="newMessage"
             placeholder="Add a message"
-            value={newMessage.text}
+            value={newMessageValue}
             onChange={handleNewChange}
+            reference={register({ required: true })}
+            validationErrors={errors}
           >
             {' '}
             <button
               type="submit"
-              onClick={handleNewSave}
+              onClick={handleSubmit(handleNewSave)}
               disabled={saving}
               className="btn btn-primary"
             >
